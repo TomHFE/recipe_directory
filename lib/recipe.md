@@ -23,7 +23,7 @@ I'd like to give a rating to each of the recipes (from 1 to 5).
 ```
 Nouns:
 
-album, title, release year
+food, recipes, name, cooking time, rating 
 ```
 
 ## 2. Infer the Table Name and Columns
@@ -32,11 +32,11 @@ Put the different nouns in this table. Replace the example with your own nouns.
 
 | Record                | Properties          |
 | --------------------- | ------------------- |
-| album                 | title, release year |
+| recipes               | name, cooking time, rating  |
 
-Name of the table (always plural): `albums`
+Name of the table (always plural): `recipes`
 
-Column names: `title`, `release_year`
+Column names: `name`, `cooking_time`, `rating`
 
 ## 3. Decide the column types
 
@@ -50,27 +50,29 @@ Remember to **always** have the primary key `id` as a first column. Its type wil
 # EXAMPLE:
 
 id: SERIAL
-title: text
-release_year: int
+name: VARCHAR(255)
+cooking_time: int
+rating: int
 ```
 
 ## 4. Write the SQL
 
 ```sql
 -- EXAMPLE
--- file: albums_table.sql
+-- file: recipes_table.sql
 
 -- Replace the table name, column names and types.
 
-CREATE TABLE albums (
-  id SERIAL PRIMARY KEY,
-  title text,
-  release_year int
+CREATE TABLE recipes (
+id SERIAL PRIMARY KEY
+name VARCHAR(255)
+cooking_time int
+rating int
 );
 ```
 
 ## 5. Create the table
 
 ```bash
-psql -h 127.0.0.1 database_name < albums_table.sql
+psql -h 127.0.0.1 pair_recipe_database < recipe_store.sql
 ```
